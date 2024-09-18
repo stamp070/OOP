@@ -1,0 +1,47 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package javaapplication2;
+
+/**
+ *
+ * @author studentcs
+ */
+import java.awt.*;
+import javax.swing.*;
+public class Lab9_6 extends JPanel{
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.drawArc(20, 220, 80, 40, 0, 180);
+        g.drawLine(20 + 40, 220, 20 + 40, 20);
+        g.drawLine(20 + 40, 20, 20 + 40 + 100, 20);
+        g.drawLine(20 + 40 + 100, 20, 20 + 40 + 100, 40);
+        int radius = 20;
+        g.drawOval(20 + 40 + 100 - radius, 40, 2 * radius, 2 * radius);
+        g.drawLine(20 + 40 + 100 - (int)(radius *
+        Math.cos(Math.toRadians(45))),
+        40 + radius + (int)(radius * Math.sin(Math.toRadians(45))),
+        20 + 40 + 100 - 60, 40 + radius + 60);
+        g.drawLine(20 + 40 + 100 + (int)(radius *
+        Math.cos(Math.toRadians(45))),
+        40 + radius + (int)(radius * Math.sin(Math.toRadians(45))),
+        20 + 40 + 100 + 60, 40 + radius + 60);
+        g.drawLine(20 + 40 + 100, 40 + 2* radius,
+        20 + 40 + 100, 40 + radius + 80);
+        g.drawLine(20 + 40 + 100, 40 + radius + 80, 20 + 40 + 100 - 40,
+        40 + radius + 80 + 40);
+        g.drawLine(20 + 40 + 100, 40 + radius + 80, 20 + 40 + 100 + 40,
+        40 + radius + 80 + 40);
+    }
+    public static void main(String[] args){
+        Lab9_6 hang = new Lab9_6();
+        JFrame frame = new JFrame();
+        frame.add(hang);
+        frame.setSize(500,500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}

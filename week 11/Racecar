@@ -1,0 +1,62 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import java.awt.event.*;
+import javax.swing.*;
+public class Racecar extends JFrame {
+    public Racecar() {
+        add(new RaceCar());
+    }
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable(){
+            public void run(){
+                Racecar frame = new Racecar();
+                frame.setTitle("Exercise");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(200, 100);
+                frame.setLocationRelativeTo(null); // Center the frame
+                frame.setVisible(true);
+            }
+        });
+        
+    }
+}
+class RaceCar extends JPanel {
+    private int xBase = 0;
+    private static final int UPDATE_RATE = 20;
+    public RaceCar() {
+        Thread gameThread = new Thread(){
+        public void run(){
+                while(true){
+                    repaint();
+                    try {Thread.sleep(1000 / UPDATE_RATE); // milliseconds
+                    } catch (InterruptedException ex) { }
+                }
+            }
+        };
+        gameThread.start();
+    }
+
+@Override
+public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    int yBase = getHeight();
+    if (xBase > getWidth())
+        xBase = -20;
+    else
+        xBase += 1;
+    g.setColor(Color.BLACK);
+    g.fillOval(xBase + 10, yBase - 10, 10, 10);
+    g.fillOval(xBase + 30, yBase - 10, 10, 10);
+    g.setColor(Color.GREEN);
+    g.fillRect(xBase, yBase - 20, 50, 10);
+    g.setColor(Color.RED);
+    Polygon polygon = new Polygon();
+    polygon.addPoint(xBase + 10, yBase - 20);
+    polygon.addPoint(xBase + 20, yBase - 30);
+    polygon.addPoint(xBase + 30, yBase - 30);
+    polygon.addPoint(xBase + 40, yBase - 20);
+    g.fillPolygon(polygon);
+    }
+}
+
